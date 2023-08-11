@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Simple Speed Typer</title>
   <link rel="stylesheet" href="style.css"></head>
+  <link rel="stylesheet" href="css/load.css"></head>
+  <link rel="stylesheet" href="css/formulaire.css"></head>
+  <link rel="stylesheet" href="css/game.css"></head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
     body {
@@ -14,41 +17,7 @@
       background-color: #f0f0f0;
     }
     
-    .letterCS {
-      position: absolute;
-      font-size: 24px;
-      font-weight: bold;
-      color: #d7a800;
-      font-weight: bold;
-      opacity: 0.5;
-      animation: moveAndResize 8s infinite linear;
-    }
-    .lettreIeee {
-      position: absolute;
-      font-size: 24px;
-      font-weight: bold;
-      color: #0111bf;
-      font-weight: bold;
-      opacity: 0.5;
-      animation: moveAndResize 8s infinite linear;
-    }
-    @keyframes moveAndResize {
-      0%, 100% {
-        transform: translate(-50%, -50%) scale(1) rotate(0deg);
-      }
-      25% {
-        transform: translate(-50%, -50%) scale(2) rotate(90deg);
-        opacity: 0.7;
-      }
-      50% {
-        transform: translate(-50%, -50%) scale(1) rotate(180deg);
-        opacity: 0.4;
-      }
-      75% {
-        transform: translate(-50%, -50%) scale(2) rotate(270deg);
-        opacity: 0.7;
-      }}
-  </style>
+ </style>
   <body onload="loading()">
     <div class="heading">
       <img src="./images/ieee (1).png" alt="logo ieee" class="logo">
@@ -95,15 +64,17 @@
       </div>
     </div>
     <div class="window formulaire" id="formulaire" style="display: none;">
-      <form action="" style="max-width:500px;margin:auto">
+      <form action="">
         <h2 class="form-title">Register</h2>
-        <div class="input-container">
-          <i class="fa fa-user icon"></i>
-          <input class="input-field" type="text" placeholder="FirstName" name="firstName"/>
-        </div>
-        <div class="input-container">
-          <i class="fa fa-user icon"></i>
-          <input class="input-field" type="text" placeholder="LastName" name="lastName"/>
+        <div class="container2">
+          <div class="input-container">
+            <i class="fa fa-user icon"></i>
+            <input class="input-field" type="text" placeholder="FirstName" name="firstName"/>
+          </div>
+          <div class="input-container">
+            <i class="fa fa-user icon"></i>
+            <input class="input-field" type="text" placeholder="LastName" name="lastName"/>
+          </div>
         </div>
         <div class="input-container">
           <i class="fa fa-envelope icon"></i>
@@ -114,6 +85,20 @@
           <i class="fa fa-phone icon"></i>
           <input class="input-field" type="tel" placeholder="Phone Number" name="phoneNumber" required>
         </div>
+
+        <div class="input-container">
+          <i class="fa fa-leanpub icon" style="height: 37px;"></i>
+          <select id="engineering-field" class="custom-select">
+            <option value="civil">Engineering Specialization</option>
+            <option value="civil">Civil Engineering</option>
+            <option value="industrial">Industrial Engineering</option>
+            <option value="computer">Computer Engineering</option>
+            <option value="electrical">Electrical Engineering</option>
+            <option value="math">Mathematics and Modeling Engineering</option>
+            <option value="mechanical">Mechanical Engineering</option>
+          </select>
+        </div>
+
         <div class="input-container">
           <i class="fa fa-key icon"></i>
           <input class="input-field" type="password" placeholder="Password" name="psw">
