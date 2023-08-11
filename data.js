@@ -4,6 +4,17 @@ const quotes_array = [
     "Wake up with determination. Go to bed with satisfaction.",
     "It's going to be hard, but hard does not mean impossible.",
     "Learning never exhausts the mind.",
+    /*     ensit info     */
+    "ENSIT: Ecole nationale superieure d'ingenieurs de Tunis",
+    "Civil Engineering",
+    "Industrial Engineering",
+    "Computer Engineering",
+    "Electrical Engineering",
+    "Mathematics and Modeling Engineering",
+    "Mechanical Engineering",
+    
+    /*     ieee info     */
+    "IEEE: Institute of Electrical and Electronics Engineers",
     "The only way to do great work is to love what you do.",
     "IEEE Computer Society (CS): Focusing on computer science and technology.",
     "IEEE Communications Society (ComSoc): Covering communication systems and technologies.",
