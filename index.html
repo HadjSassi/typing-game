@@ -1,39 +1,139 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Simple Speed Typer</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="container">
-    <div class="heading">Simple Speed Typing</div>
-    <div class="header">
-      <div class="wpm">
-        <div class="header_text">WPM</div>
-        <div class="curr_wpm">100</div>
-      </div>
-      <div class="cpm">
-        <div class="header_text">CPM</div>
-        <div class="curr_cpm">100</div>
-      </div>
-      <div class="errors">
-        <div class="header_text">Errors</div>
-        <div class="curr_errors">0</div>
-      </div>
-      <div class="timer">
-        <div class="header_text">Time</div>
-        <div class="curr_time">60s</div>
-      </div>
-      <div class="accuracy">
-        <div class="header_text">% Accuracy</div>
-        <div class="curr_accuracy">100</div>
+  <link rel="stylesheet" href="style.css"></head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body {
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+    
+    .letterCS {
+      position: absolute;
+      font-size: 24px;
+      font-weight: bold;
+      color: #d7a800;
+      font-weight: bold;
+      opacity: 0.5;
+      animation: moveAndResize 8s infinite linear;
+    }
+    .lettreIeee {
+      position: absolute;
+      font-size: 24px;
+      font-weight: bold;
+      color: #0111bf;
+      font-weight: bold;
+      opacity: 0.5;
+      animation: moveAndResize 8s infinite linear;
+    }
+    @keyframes moveAndResize {
+      0%, 100% {
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+      }
+      25% {
+        transform: translate(-50%, -50%) scale(2) rotate(90deg);
+        opacity: 0.7;
+      }
+      50% {
+        transform: translate(-50%, -50%) scale(1) rotate(180deg);
+        opacity: 0.4;
+      }
+      75% {
+        transform: translate(-50%, -50%) scale(2) rotate(270deg);
+        opacity: 0.7;
+      }}
+  </style>
+  <body onload="loading()">
+    <div class="heading">
+      <img src="./images/ieee (1).png" alt="logo ieee" class="logo">
+      <p>IEEE ENSIT Speed Typing Game Challenge</p>
+      <img src="./images/cswhite.png" alt="logo cs" class="logo">
+    </div>
+    <div class="window" id="container-game" style="display: none;">
+      <div class="badge-icon" id="badge-icon" onclick="openLogin()">
+        <img src="assets/avatar/default.jpeg" alt=""  id="res-nav" class="res-nav">
+        <span id="login-name">Anonymous</span> 
+    </div>
+      <div class="container">
+        <div class="header">
+          <div class="wpm">
+            <div class="header_text">WPM</div>
+            <div class="curr_wpm">100</div>
+          </div>
+          <div class="cpm">
+            <div class="header_text">CPM</div>
+            <div class="curr_cpm">100</div>
+          </div>
+          <div class="errors">
+            <div class="header_text">Errors</div>
+            <div class="curr_errors">0</div>
+          </div>
+          <div class="timer">
+            <div class="header_text">Time</div>
+            <div class="curr_time">60s</div>
+          </div>
+          <div class="accuracy">
+            <div class="header_text">%Accuracy</div>
+            <div class="curr_accuracy">100</div>
+          </div>
+          <div class="allWord">
+            <div class="header_text">All Word</div>
+            <div class="curr_allWord"></div>
+          </div>
+        </div>
+
+        <div class="quote">Click on the area below to start the game.</div>
+        <textarea class="input_area" placeholder="Start typing here..." oninput="processCurrentText()"
+          onfocus="startGame()"></textarea>
+        <button class="restart_btn" onclick="resetValues()">Restart</button>
       </div>
     </div>
+    <div class="window formulaire" id="formulaire" style="display: none;">
+      <form action="" style="max-width:500px;margin:auto">
+        <h2 class="form-title">Register</h2>
+        <div class="input-container">
+          <i class="fa fa-user icon"></i>
+          <input class="input-field" type="text" placeholder="FirstName" name="firstName"/>
+        </div>
+        <div class="input-container">
+          <i class="fa fa-user icon"></i>
+          <input class="input-field" type="text" placeholder="LastName" name="lastName"/>
+        </div>
+        <div class="input-container">
+          <i class="fa fa-envelope icon"></i>
+          <input class="input-field" type="text" placeholder="Email" name="email">
+        </div>
 
-    <div class="quote">Click on the area below to start the game.</div>
-    <textarea class="input_area" placeholder="start typing here..." oninput="processCurrentText()"
-      onfocus="startGame()"></textarea>
-    <button class="restart_btn" onclick="resetValues()">Restart</button>
-  </div>
-  <script src="game.js"></script>
+        <div class="input-container">
+          <i class="fa fa-phone icon"></i>
+          <input class="input-field" type="tel" placeholder="Phone Number" name="phoneNumber" required>
+        </div>
+        <div class="input-container">
+          <i class="fa fa-key icon"></i>
+          <input class="input-field" type="password" placeholder="Password" name="psw">
+        </div>
+      
+        <button type="submit" class="btn" onClick="Submitlogin(); ">Register</button>
+      </form>
+    </div>
+    <div class="window load" id="load">
+      <div class="heading1" style="z-index:10;">
+        <img src="./images/ieee (1).png" alt="logo ieee" class="logo">
+        <img src="./images/cswhite.png" alt="logo cs" class="logo">
+      </div>
+      <div class="load-center" >
+          <h1 class="title-window">Welcome in IEEE ENSIT </h1>
+          <div class="loader"></div>                
+          <h2 class="wait">Wait ...</h2>    
+      </div> 
+    </div> 
+    <script src="data.js"></script>
+    <script src="game.js"></script>
 </body>
 </html>
