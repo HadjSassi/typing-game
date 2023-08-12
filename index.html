@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simple Speed Typer</title>
+  <title>IEEE ENSIT Speed Typing Game Challenge</title>
+  <link rel="icon" type="image/x-icon" href="./images/ieee.jpg">
+
   <link rel="stylesheet" href="style.css"></head>
   <link rel="stylesheet" href="css/load.css"></head>
   <link rel="stylesheet" href="css/formulaire.css"></head>
@@ -26,8 +28,8 @@
     </div>
     <div class="window" id="container-game" style="display: none;">
       <div class="badge-icon" id="badge-icon" onclick="openLogin()">
-        <img src="assets/avatar/default.jpeg" alt=""  id="res-nav" class="res-nav">
-        <span id="login-name">Anonymous</span> 
+        <i class="fa fa-user icon"></i>
+        <span id="login-name"></span> 
     </div>
       <div class="container">
         <div class="header">
@@ -69,16 +71,16 @@
         <div class="container2">
           <div class="input-container">
             <i class="fa fa-user icon"></i>
-            <input class="input-field" type="text" placeholder="FirstName" name="firstName"/>
+            <input id="firstName" class="input-field" type="text" placeholder="FirstName" name="firstName" required/>
           </div>
           <div class="input-container">
             <i class="fa fa-user icon"></i>
-            <input class="input-field" type="text" placeholder="LastName" name="lastName"/>
+            <input class="input-field" type="text" placeholder="LastName" name="lastName" required/>
           </div>
         </div>
         <div class="input-container">
           <i class="fa fa-envelope icon"></i>
-          <input class="input-field" type="text" placeholder="Email" name="email">
+          <input class="input-field" type="text" placeholder="Email" name="email" required>
         </div>
 
         <div class="input-container">
@@ -101,7 +103,7 @@
 
         <div class="input-container">
           <i class="fa fa-key icon"></i>
-          <input class="input-field" type="password" placeholder="Password" name="psw">
+          <input class="input-field" type="password" placeholder="Password" name="psw" required>
         </div>
       
         <button type="submit" class="btn" onClick="Submitlogin(); ">Register</button>
@@ -118,7 +120,7 @@
           <h2 class="wait">Wait ...</h2>    
       </div> 
     </div> 
-    <script src="data.js"></script>
-    <script src="game.js"></script>
+    <script src="./data.js"></script>
+    <script src="./game.js"></script>
 </body>
 </html>

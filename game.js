@@ -36,8 +36,14 @@ function loading() {
   }
   setTimeout(loadfunc, 7000)
 }
+
 function Submitlogin() {    
   var formulaire=document.getElementById("formulaire");
+  var nom= document.getElementById("firstName");
+  var loginName=document.getElementById("login-name");
+  if (nom){
+    loginName.innerHTML = nom.value;
+  }
   formulaire.remove();
   const game = document.getElementById("container-game");
   game.style.display = "block";
