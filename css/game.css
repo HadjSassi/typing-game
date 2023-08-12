@@ -1,9 +1,25 @@
+  #score{
+    color: var(--main-color);
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
   .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: var(--container-color) ;
     min-height: 90vh;
+    padding-top: 70px;
+  }
+  .header {
+    display: flex;
+    align-items: center;
+  }
+  .header_text {
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-color);
   }
   .timer, .errors, .accuracy,.allWord, .cpm, .wpm {
     background-color: var(--main-color);
@@ -31,27 +47,34 @@
     color:#fe1e09 !important;
   }
   .quote {
+    display: none;
     background-color: var(--main-color);
     color: var(--text-color);
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin: 10px;
-    padding: 25px;
+    padding: 15px;
     box-shadow: var(--shadow-color) 5px 8px 5px;
     border-radius: 15px;
     user-select: none;
   }
   .input_area {
     background-color: #f5f5c6;
-    height: 80px;
+    height: 100px;
     width: 40%;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 600;
     margin: 15px;
-    padding: 20px;
-    border: 0px;
+    border: 1px solid  var(--input-color);
     box-shadow: var(--shadow-color)  5px 8px 5px;
+    padding: 15px;
+    border-radius: 6px;
+    caret-color: var(--main-color);
   }
-  
+  .input_area:focus {
+    outline: none !important;
+      border: 2px solid  var(--main-color);
+      box-shadow: 0 0 5px var(--main-color);
+  }
   .incorrect_char {
     color: red;
     text-decoration: underline;
@@ -61,8 +84,7 @@
     color: darkgreen;
   }
      
-  .restart_btn {
-    display: none;
+  .game_btn {
     background-image: linear-gradient(to right, #F09819 0%, #EDDE5D  51%, #F09819  100%);
     margin: 10px;
     font-size: 1.5rem;
@@ -74,11 +96,52 @@
     color: var(--text-color);
     box-shadow: 0 0 20px #eee;
     border-radius: 10px;
-    display: block;
   }
   
-  .restart_btn:hover {
+  .game_btn:hover {
     background-position: right center; 
     color: #fff;
     text-decoration: none;
   }
+  .restart_btn {
+    display: none; 
+  }
+  .btn_container{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap:5%;
+  }
+  @media screen and (max-width: 1000px) {
+    .btn_container {
+      display: block;
+    }
+    .input_area {
+      width: 50%;
+    }
+    .header {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      align-items: center;
+    }
+    .header_text {
+      font-size: 0.6rem;
+    }
+    .curr_time, .curr_errors,
+    .curr_accuracy,.curr_allWord, .curr_cpm,
+    .curr_wpm {
+      font-size: 1.2rem;
+    }
+
+    .timer, .errors, .accuracy,.allWord, .cpm, .wpm {
+      height: 50px;
+      min-width: 80px;
+      margin: 5px;
+      padding: 8px;
+    }
+    .quote {
+      font-size: 1rem;
+      margin: 10px;
+      padding: 10px;
+    }
+  }
+ 

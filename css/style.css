@@ -15,8 +15,8 @@ body {
   background-color: var(--main-color);
   text-align: center;
   font-family: "Open Sans", sans-serif;
-  overflow: hidden;
   margin: 0;
+  overflow: hidden;
   padding: 0;
 }
 .window{
@@ -46,30 +46,22 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-.header {
-  display: flex;
-  align-items: center;
-}
-.header_text {
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--text-color);
-}
+
 
 #login-name{
   color: var(--text-color);
   font-size: 20px;
   font-weight: bold;
 }
+.badge{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
 .badge-icon {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
   width: max-content;
   padding: 5px;
   font-size: 14px;
-  line-height: 50px;
   border-radius: 25px;
   background-color:var(--main-color);
   justify-content: center;

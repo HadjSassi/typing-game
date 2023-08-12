@@ -1,4 +1,4 @@
-let TIME_LIMIT = 60;
+let TIME_LIMIT = 10;
 
 let timer_text = document.querySelector(".curr_time");
 let accuracy_text = document.querySelector(".curr_accuracy");
@@ -8,6 +8,8 @@ let wpm_text = document.querySelector(".curr_wpm");
 let quote_text = document.querySelector(".quote");
 let input_area = document.querySelector(".input_area");
 let restart_btn = document.querySelector(".restart_btn");
+let btnStart = document.getElementById("btnStart");
+let score = document.getElementById("score");
 let cpm_group = document.querySelector(".cpm");
 let wpm_group = document.querySelector(".wpm");
 let error_group = document.querySelector(".errors");
@@ -36,7 +38,7 @@ function updateQuote() {
   }
 
   quote_text.textContent = null;
-
+  nbWords.innerHTML=quotes_array.length;
   const randomIndex = Math.floor(Math.random() * quotes_array.length);
   current_quote = quotes_array[randomIndex];
 
@@ -137,7 +139,7 @@ function finishGame() {
 
   // display restart button
   restart_btn.style.display = "block";
-
+  score.style.display = "block";
   // calculate cpm and wpm
   cpm = Math.round(((characterTyped / timeElapsed) * 60));
   wpm = Math.round((((characterTyped / 5) / timeElapsed) * 60));
@@ -151,9 +153,11 @@ function finishGame() {
   wpm_group.style.display = "block";
 }
 function startGame() {
+  btnStart.style.display="none";
+  quote_text.style.display="block";
+  input_area.focus();
   resetValues();
   updateQuote();
-  // clear old and start a new timer
   clearInterval(timer);
   timer = setInterval(updateTimer, 1000);
 }
@@ -172,6 +176,7 @@ function resetValues() {
   timer_text.textContent = timeLeft + 's';
   error_text.textContent = 0;
   restart_btn.style.display = "none";
+  score.style.display="none";
   cpm_group.style.display = "none";
   wpm_group.style.display = "none";
   nbWords.innerHTML = quotes_array.length;

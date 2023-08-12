@@ -1,4 +1,4 @@
-const quotes_array = [
+let quotes_array = [
     "Push yourself, because no one else is going to do it for you",
     "Failure is the condiment that gives success its flavor",
     "Wake up with determination. Go to bed with satisfaction",

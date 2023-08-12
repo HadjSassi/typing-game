@@ -17,12 +17,16 @@
       <p class="title-heading">IEEE ENSIT Speed Typing Game Challenge</p>
       <img src="./images/cswhite.png" alt="logo cs" class="logo">
     </div>
+    
     <div class="window" id="container-game" style="display: none;">
-      <div class="container">
+      <div class="badge">
         <div class="badge-icon" id="badge-icon" onclick="openLogin()">
           <i class="fa fa-user icon"></i>
           <span id="login-name">Anonymous</span> 
         </div>
+      </div>
+      <div class="container">
+        <p id="score" style="display: none;">Your Score: <span id="score"></span> </p>
         <div class="header">
           <div class="wpm">
             <div class="header_text">WPM</div>
@@ -45,14 +49,17 @@
             <div class="curr_accuracy">100</div>
           </div>
           <div class="allWord">
-            <div class="header_text">All Word</div>
+            <div class="header_text">All Words</div>
             <div class="curr_allWord"></div>
           </div>
         </div>
-        <div class="quote">Click on the area below to start the game.</div>
+        <div class="quote"></div>
         <textarea class="input_area" placeholder="Start typing here..." oninput="processCurrentText()"
-          onfocus="startGame()"></textarea>
-        <button class="restart_btn" onclick="resetValues()">Restart</button>
+          ></textarea>
+        <div>
+          <button class="game_btn" id="btnStart" onclick="startGame()">Start</button>
+          <button class="game_btn restart_btn" onclick="resetValues()">Restart</button>
+        </div>
       </div>
     </div>
     <div class="window formulaire" id="formulaire" style="display: none;">
@@ -120,7 +127,7 @@
     </div> 
     <script src="./js/data.js"></script>
     <script src="./js/load.js"></script>
-    <script src="./js/formulaire..js"></script>
+    <script src="./js/formulaire.js"></script>
     <script src="./js/game.js"></script>
 </body>
 </html>
