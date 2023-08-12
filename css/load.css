@@ -48,20 +48,20 @@
   }
   .letterCS {
     position: absolute;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     color: #d7a800;
     font-weight: bold;
-    opacity: 0.5;
+    opacity: 0.2;
     animation: moveAndResizeCss 7s infinite linear;
   }
   .lettreIeee {
     position: absolute;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     color: #0111bf;
     font-weight: bold;
-    opacity: 0.5;
+    opacity: 0.2;
     animation: moveAndResizeIeee 7s infinite linear;
   }
   @keyframes moveAndResizeIeee {
@@ -70,15 +70,15 @@
     }
     25% {
       transform: translate(-50%, -50%) scale(1.2) rotate(90deg);
-      opacity: 0.7;
+      opacity: 0.2;
     }
     50% {
       transform: translate(-50%, -50%) scale(0.6) rotate(180deg);
-      opacity: 0.4;
+      opacity: 0.3;
     }
     75% {
       transform: translate(-50%, -50%) scale(1.2) rotate(270deg);
-      opacity: 0.7;
+      opacity: 0.5;
     }
   }
 
@@ -88,7 +88,7 @@
     }
     25% {
       transform: translate(-50%, -50%) scale(1.2) rotate(90deg);
-      opacity: 0.7;
+      opacity: 0.2;
     }
     50% {
       transform: translate(-50%, -50%) scale(0.6) rotate(180deg);
@@ -96,7 +96,7 @@
     }
     75% {
       transform: translate(-50%, -50%) scale(1.2) rotate(270deg);
-      opacity: 0.7;
+      opacity: 0.5;
     }
   }
   

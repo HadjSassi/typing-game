@@ -1,58 +1,94 @@
 function loadfunc() {    
   var load=document.getElementById("load");
   load.remove();
-  // const game = document.getElementById("container-game");
-  // game.style.display = "block";
   const formulaire = document.getElementById("formulaire");
   formulaire.style.display = "block";
 };
 function loading() {
-  const alphabetCs = 'CscS!CscS!CscS!CscS!CscS!CscS!CscS!CscS!CscS!CscS!CscS!CscS!CscS!CscS!';
-  const alphabetIeee = 'IEEEENSIT!IEEEENSIT!IEEEENSIT!IEEEENSIT!IEEEENSIT!IEEEENSITIEEEENSIT';
-  const lettreCs="letterCS";
-  const lettreIeee="lettreIeee";
+  const words = [
+    { text: ['CS','RAS','Wie','IAS','AESS','PES'], class: 'letterCS' },
+    { text:['IEEE','ENSIT'], class: 'lettreIeee' }
+  ];
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-
-  function createLetter(letter, classLettre) {
-    const element = document.createElement('div');
-    if(classLettre==='letterCS'){
-      element.className = "letterCS";
-    }else if(classLettre==='lettreIeee'){
-      element.className = "lettreIeee";
+  function createWord(wordObj) {
+    const texts = wordObj.text;
+    for (const text of texts) {
+      const element = document.createElement('div');
+      element.className = wordObj.class;
+      element.style.left = getRandomInt(0, window.innerWidth) + 'px';
+      element.style.top = getRandomInt(0, window.innerHeight) + 'px';
+      element.style.transform = `rotate(${getRandomInt(-180, 180)}deg)`;
+      element.textContent = text;
+      document.getElementById('load').appendChild(element);
     }
-    element.style.left = getRandomInt(0, window.innerWidth) + 'px';
-    element.style.top = getRandomInt(0, window.innerHeight) + 'px';
-    element.style.transform = `rotate(${getRandomInt(-180, 180)}deg)`;
-    element.textContent = letter;
-    document.getElementById("load").appendChild(element);
   }
-  for (const letter of alphabetCs) {
-    createLetter(letter,lettreCs );
-  }
-  for (const letter of alphabetIeee) {
-    createLetter(letter,lettreIeee);
-  }
+  for(i=0;i<10;i++)
+    for (const word of words) {
+      createWord(word);
+    }
   setTimeout(loadfunc, 7000)
 }
 
-function Submitlogin() {    
-  var formulaire=document.getElementById("formulaire");
-  var nom= document.getElementById("firstName");
-  var loginName=document.getElementById("login-name");
-  if (nom){
-    loginName.innerHTML = nom.value;
-  }
-  formulaire.remove();
-  const game = document.getElementById("container-game");
-  game.style.display = "block";
-};
 
-// define the time limit
+document.addEventListener("DOMContentLoaded", function() {
+  var registrationForm = document.getElementById("registration-form");
+
+  registrationForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    var firstName = document.getElementById("firstName").value;
+    var lastName = document.querySelector('input[name="lastName"]').value;
+    var email = document.querySelector('input[name="email"]').value;
+    var phoneNumber = document.querySelector('input[name="phoneNumber"]').value;
+    var engineeringField = document.getElementById("engineering-field").value;
+    var password = document.querySelector('input[name="psw"]').value;
+
+    if (firstName.trim() === "") {
+      alert("First Name is required");
+      return;
+    }
+
+    if (lastName.trim() === "") {
+      alert("Last Name is required");
+      return;
+    }
+
+    if (email.trim() === "") {
+      alert("Email is required");
+      return;
+    }
+
+    if (phoneNumber.trim() === "") {
+      alert("Phone Number is required");
+      return;
+    }
+
+    if (engineeringField === "civil") {
+      alert("Please select a valid Engineering Specialization");
+      return;
+    }
+
+    if (password.trim() === "") {
+      alert("Password is required");
+      return;
+    }
+    Submitlogin(firstName);
+  });
+
+  function Submitlogin(firstName) {
+    var loginName = document.getElementById("login-name");
+    loginName.innerHTML = firstName;
+
+    var formulaire = document.getElementById("formulaire");
+    formulaire.remove();
+    const game = document.getElementById("container-game");
+    game.style.display = "block";
+  }
+});
 let TIME_LIMIT = 60;
 
-// selecting required elements
 let timer_text = document.querySelector(".curr_time");
 let accuracy_text = document.querySelector(".curr_accuracy");
 let error_text = document.querySelector(".curr_errors");
