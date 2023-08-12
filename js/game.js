@@ -1,4 +1,4 @@
-let TIME_LIMIT = 10;
+let TIME_LIMIT = 60;
 
 let timer_text = document.querySelector(".curr_time");
 let accuracy_text = document.querySelector(".curr_accuracy");
