@@ -1,0 +1,102 @@
+/* 
+
+.loader {
+  border: 16px solid var(--icon-color);
+  border-radius: 50%;
+  border-top: 10px solid var(--main-color);
+  width: 120px;
+  height: 120px;
+  margin: 50px auto;
+  animation: loadSpin 2s linear infinite;
+ } */
+
+.load{
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+    background-size: cover;
+    width: 100%; 
+    position: absolute;
+    top: 0%;
+    left: 0%; 
+    border-radius: 0;
+    border: none;
+    padding: 30px 0;
+  }
+  .load-center{
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  }
+  .load .wait{
+    color: var(--text-color);
+    font-size: 25px;
+    margin: 50px 0;
+    /* text-shadow: 0 0 5px var(--text-color), 0 0 10px var(--text-color), 0 0 15px var(--text-color), 0 0 20px var(--main-color), 
+    0 0 30px var(--main-color), 0 0 40px var(--main-color), 0 0 55px var(--main-color), 0 0 75px var(--main-color); */
+  }
+  .load .title-window{
+    color: var(--text-color);
+    font-size: 70px;
+    margin: 100px 0 50px;
+    /* text-shadow: 0 0 5px var(--text-color), 0 0 10px var(--text-color), 0 0 15px var(--text-color), 0 0 20px var(--main-color), 
+    0 0 30px var(--main-color), 0 0 40px var(--main-color), 0 0 55px var(--main-color), 0 0 75px var(--main-color); */
+  }
+  @keyframes loadSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .letterCS {
+    position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+    color: #d7a800;
+    font-weight: bold;
+    opacity: 0.2;
+    animation: moveAndResizeCss 7s infinite linear;
+  }
+  .lettreIeee {
+    position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+    color: #0111bf;
+    font-weight: bold;
+    opacity: 0.2;
+    animation: moveAndResizeIeee 7s infinite linear;
+  }
+  @keyframes moveAndResizeIeee {
+    0%, 100% {
+      transform:translate(540px,-200px) scale(0.6) rotate(0deg);
+    }
+    25% {
+      transform: translate(-50%, -50%) scale(1.2) rotate(90deg);
+      opacity: 0.2;
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(0.6) rotate(180deg);
+      opacity: 0.3;
+    }
+    75% {
+      transform: translate(-50%, -50%) scale(1.2) rotate(270deg);
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes moveAndResizeCss {
+    0%, 100% {
+      transform:translate(-500px,-540px) scale(0.6) rotate(0deg);
+    }
+    25% {
+      transform: translate(-50%, -50%) scale(1.2) rotate(90deg);
+      opacity: 0.2;
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(0.6) rotate(180deg);
+      opacity: 0.4;
+    }
+    75% {
+      transform: translate(-50%, -50%) scale(1.2) rotate(270deg);
+      opacity: 0.5;
+    }
+  }
+  

@@ -1,39 +1,133 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Simple Speed Typer</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="container">
-    <div class="heading">Simple Speed Typing</div>
-    <div class="header">
-      <div class="wpm">
-        <div class="header_text">WPM</div>
-        <div class="curr_wpm">100</div>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IEEE ENSIT Speed Typing Game Challenge</title>
+  <link rel="icon" type="image/x-icon" href="./images/ieee.jpg">
+
+  <link rel="stylesheet" href="css/style.css"></head>
+  <link rel="stylesheet" href="css/load.css"></head>
+  <link rel="stylesheet" href="css/formulaire.css"></head>
+  <link rel="stylesheet" href="css/game.css"></head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <body onload="loading()">
+    <div class="heading">
+      <img src="./images/ieee (1).png" alt="logo ieee" class="logo">
+      <p class="title-heading">IEEE ENSIT Speed Typing Game Challenge</p>
+      <img src="./images/cswhite.png" alt="logo cs" class="logo">
+    </div>
+    
+    <div class="window" id="container-game" style="display: none;">
+      <div class="badge">
+        <div class="badge-icon" id="badge-icon" onclick="openLogin()">
+          <i class="fa fa-user icon"></i>
+          <span id="login-name">Anonymous</span> 
+        </div>
       </div>
-      <div class="cpm">
-        <div class="header_text">CPM</div>
-        <div class="curr_cpm">100</div>
-      </div>
-      <div class="errors">
-        <div class="header_text">Errors</div>
-        <div class="curr_errors">0</div>
-      </div>
-      <div class="timer">
-        <div class="header_text">Time</div>
-        <div class="curr_time">60s</div>
-      </div>
-      <div class="accuracy">
-        <div class="header_text">% Accuracy</div>
-        <div class="curr_accuracy">100</div>
+      <div class="container">
+        <p id="score" style="display: none;">Your Score: <span id="score"></span> </p>
+        <div class="header">
+          <div class="wpm">
+            <div class="header_text">WPM</div>
+            <div class="curr_wpm">100</div>
+          </div>
+          <div class="cpm">
+            <div class="header_text">CPM</div>
+            <div class="curr_cpm">100</div>
+          </div>
+          <div class="errors">
+            <div class="header_text">Errors</div>
+            <div class="curr_errors">0</div>
+          </div>
+          <div class="timer">
+            <div class="header_text">Time</div>
+            <div class="curr_time">60s</div>
+          </div>
+          <div class="accuracy">
+            <div class="header_text">%Accuracy</div>
+            <div class="curr_accuracy">100</div>
+          </div>
+          <div class="allWord">
+            <div class="header_text">All Words</div>
+            <div class="curr_allWord"></div>
+          </div>
+        </div>
+        <div class="quote"></div>
+        <textarea class="input_area" placeholder="Start typing here..." oninput="processCurrentText()"
+          ></textarea>
+        <div>
+          <button class="game_btn" id="btnStart" onclick="startGame()">Start</button>
+          <button class="game_btn restart_btn" onclick="resetValues()">Restart</button>
+        </div>
       </div>
     </div>
+    <div class="window formulaire" id="formulaire" style="display: none;">
+      <form id="registration-form" action="">
+        <h2 class="form-title">Register</h2>
+        <div class="container2">
+          <div class="input-container">
+            <i class="fa fa-user icon"></i>
+            <input id="firstName" class="input-field" type="text" placeholder="FirstName" name="firstName" />
+          </div>
+          <div class="input-container">
+            <i class="fa fa-user icon"></i>
+            <input id="lastName" class="input-field" type="text" placeholder="LastName" name="lastName" />
+          </div>
+        </div>
+        <div class="container2">
+          <span id="firstName-error" class="error-message"></span>
+          <span id="lastName-error" class="error-message"></span>
+        </div>
 
-    <div class="quote">Click on the area below to start the game.</div>
-    <textarea class="input_area" placeholder="start typing here..." oninput="processCurrentText()"
-      onfocus="startGame()"></textarea>
-    <button class="restart_btn" onclick="resetValues()">Restart</button>
-  </div>
-  <script src="game.js"></script>
+        <div class="input-container">
+          <i class="fa fa-envelope icon"></i>
+          <input id="email" class="input-field" type="text" placeholder="Email" name="email" >
+        </div>
+        <span id="email-error" class="error-message"></span>
+
+        <div class="input-container">
+          <i class="fa fa-phone icon"></i>
+          <input id="phoneNumber" class="input-field" type="tel" placeholder="Phone Number" name="phoneNumber" >
+        </div>
+        <span id="phoneNumber-error" class="error-message"></span>
+
+        <div class="input-container">
+          <i class="fa fa-leanpub icon" style="height: 37px;"></i>
+          <select id="engineering-field" class="custom-select">
+            <option value="">Engineering Specialization</option>
+            <option value="civil">Civil Engineering</option>
+            <option value="industrial">Industrial Engineering</option>
+            <option value="computer">Computer Engineering</option>
+            <option value="electrical">Electrical Engineering</option>
+            <option value="math">Mathematics and Modeling Engineering</option>
+            <option value="mechanical">Mechanical Engineering</option>
+          </select>
+        </div>
+        <span id="engineeringField-error" class="error-message"></span>
+
+        <div class="input-container">
+          <i class="fa fa-key icon"></i>
+          <input id="psw" class="input-field" type="password" placeholder="Password" name="psw" >
+        </div>
+        <span id="psw-error" class="error-message"></span>
+        <button type="submit" class="btn">Register</button>
+      </form>
+    </div>
+    <div class="window load" id="load">
+      <div class="heading1" style="z-index:10;">
+        <img src="./images/ieee (1).png" alt="logo ieee" class="logo">
+        <img src="./images/cswhite.png" alt="logo cs" class="logo">
+      </div>
+      <div class="load-center" >
+          <h1 class="title-window">Welcome in IEEE ENSIT </h1>
+          <div class="loader"></div>                
+          <h2 class="wait">Wait ...</h2>    
+      </div> 
+    </div> 
+    <script src="./js/data.js"></script>
+    <script src="./js/load.js"></script>
+    <script src="./js/formulaire.js"></script>
+    <script src="./js/game.js"></script>
 </body>
 </html>
