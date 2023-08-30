@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<link>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IEEE ENSIT Speed Typing Game Challenge</title>
-  <link rel="icon" type="image/x-icon" href="./images/ieee.jpg">
+  <title>IEEE ENSIT TYPO</title>
+  <link rel="icon" type="image/x-icon" href="./images/cs1.png">
 
-  <link rel="stylesheet" href="css/style.css"></head>
-  <link rel="stylesheet" href="css/load.css"></head>
-  <link rel="stylesheet" href="css/formulaire.css"></head>
-  <link rel="stylesheet" href="css/game.css"></head>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/load.css">
+  <link rel="stylesheet" href="css/formulaire.css">
+  <link rel="stylesheet" href="css/game.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <body onload="loading()">
     <div class="heading">
       <img src="./images/ieee (1).png" alt="logo ieee" class="logo">
-      <p class="title-heading">IEEE ENSIT Speed Typing Game Challenge</p>
+      <p class="title-heading">IEEE ENSIT TYPO 1.0</p>
       <img src="./images/cswhite.png" alt="logo cs" class="logo">
     </div>
     
@@ -26,15 +26,11 @@
         </div>
       </div>
       <div class="container">
-        <p id="score" style="display: none;">Your Score: <span id="score"></span> </p>
+        <p id="score" style="display: none;">Your Score:</p> <h4 id="score0"></h4>
         <div class="header">
           <div class="wpm">
             <div class="header_text">WPM</div>
             <div class="curr_wpm">100</div>
-          </div>
-          <div class="cpm">
-            <div class="header_text">CPM</div>
-            <div class="curr_cpm">100</div>
           </div>
           <div class="errors">
             <div class="header_text">Errors</div>
@@ -48,17 +44,18 @@
             <div class="header_text">%Accuracy</div>
             <div class="curr_accuracy">100</div>
           </div>
-          <div class="allWord">
-            <div class="header_text">All Words</div>
-            <div class="curr_allWord"></div>
-          </div>
         </div>
         <div class="quote"></div>
         <textarea class="input_area" placeholder="Start typing here..." oninput="processCurrentText()"
           ></textarea>
         <div>
-          <button class="game_btn" id="btnStart" onclick="startGame()">Start</button>
-          <button class="game_btn restart_btn" onclick="resetValues()">Restart</button>
+<!--          <button class="game_btn" id="btnStart" onclick="startGame()">Start</button>-->
+          <div>
+            <button style="cursor: pointer" class="game_btn" id="btnEasy" onclick="selectDifficulty('easy')">Easy</button>
+            <button style="cursor: pointer" class="game_btn" id="btnMedium" onclick="selectDifficulty('medium')">Medium</button>
+            <button style="cursor: pointer" class="game_btn" id="btnHard" onclick="selectDifficulty('hard')">Hard</button>
+            <button style="cursor: pointer" class="game_btn" id="btnRandom" onclick="selectDifficulty('random')">Random</button>
+          </div>
         </div>
       </div>
     </div>
@@ -96,9 +93,9 @@
           <i class="fa fa-leanpub icon" style="height: 37px;"></i>
           <select id="engineering-field" class="custom-select">
             <option value="">Engineering Specialization</option>
+            <option value="computer">Computer Engineering</option>
             <option value="civil">Civil Engineering</option>
             <option value="industrial">Industrial Engineering</option>
-            <option value="computer">Computer Engineering</option>
             <option value="electrical">Electrical Engineering</option>
             <option value="math">Mathematics and Modeling Engineering</option>
             <option value="mechanical">Mechanical Engineering</option>
@@ -106,11 +103,6 @@
         </div>
         <span id="engineeringField-error" class="error-message"></span>
 
-        <div class="input-container">
-          <i class="fa fa-key icon"></i>
-          <input id="psw" class="input-field" type="password" placeholder="Password" name="psw" >
-        </div>
-        <span id="psw-error" class="error-message"></span>
         <button type="submit" class="btn">Register</button>
       </form>
     </div>
@@ -128,6 +120,7 @@
     <script src="./js/data.js"></script>
     <script src="./js/load.js"></script>
     <script src="./js/formulaire.js"></script>
+    <script src="./js/seedrandom.min.js"></script>
     <script src="./js/game.js"></script>
 </body>
 </html>

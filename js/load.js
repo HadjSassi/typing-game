@@ -5,9 +5,13 @@ function loadfunc() {
     formulaire.style.display = "block";
   };
   function loading() {
+    // const words = [
+    //   { text: ['CS','Computer','Society','Chapter'], class: 'letterCS' },
+    //   { text:['IEEE','ENSIT'], class: 'lettreIeee' }
+    // ];
     const words = [
-      { text: ['CS','RAS','Wie','IAS','AESS','PES'], class: 'letterCS' },
-      { text:['IEEE','ENSIT'], class: 'lettreIeee' }
+      { text: [], class: 'letterCS' },
+      { text:[], class: 'lettreIeee' }
     ];
     function getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -28,5 +32,5 @@ function loadfunc() {
       for (const word of words) {
         createWord(word);
       }
-    setTimeout(loadfunc, 7000)
+    setTimeout(loadfunc, 3000)
   }

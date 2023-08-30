@@ -1,21 +1,35 @@
 let TIME_LIMIT = 60;
+// Seed the PRNG with a fixed seed value (e.g., 12345)
+const now = new Date();
+
+const year = now.getFullYear();
+const month = now.getMonth() + 1; // Months are zero-indexed, so adding 1
+const day = now.getDate();
+const hour = now.getHours();
+const minute = now.getMinutes();
+
+const timestamp = parseInt(`${year}${month.toString().padStart(2, '0')}${day.toString().padStart(2, '0')}${hour.toString().padStart(2, '0')}${minute.toString().padStart(2, '0')}`);
+
+const seedValue = timestamp;
+
 
 let timer_text = document.querySelector(".curr_time");
 let accuracy_text = document.querySelector(".curr_accuracy");
 let error_text = document.querySelector(".curr_errors");
-let cpm_text = document.querySelector(".curr_cpm");
 let wpm_text = document.querySelector(".curr_wpm");
 let quote_text = document.querySelector(".quote");
 let input_area = document.querySelector(".input_area");
-let restart_btn = document.querySelector(".restart_btn");
-let btnStart = document.getElementById("btnStart");
+// let btnStart = document.getElementById("btnStart");
+let btnEasy = document.getElementById("btnEasy");
+let btnMedium = document.getElementById("btnMedium");
+let btnHard = document.getElementById("btnHard");
+let btnRandom = document.getElementById("btnRandom");
 let score = document.getElementById("score");
-let cpm_group = document.querySelector(".cpm");
+let scoreValue = document.getElementById("score0");
 let wpm_group = document.querySelector(".wpm");
 let error_group = document.querySelector(".errors");
 let accuracy_group = document.querySelector(".accuracy");
-let nbWords = document.querySelector(".curr_allWord");
-
+let timer_group = document.querySelector(".timer");
 let timeLeft = TIME_LIMIT;
 let timeElapsed = 0;
 let total_errors = 0;
@@ -24,13 +38,12 @@ let accuracy = 0;
 let characterTyped = 0;
 let current_quote = "";
 let timer = null;
-nbWords.innerHTML = quotes_array.length;
 
 input_area.onpaste = function () {
   return false;
 }
-let original_quotes_array = [...quotes_array];
-  
+const rng = new Math.seedrandom(seedValue);
+
 function updateQuote() {
   if (quotes_array.length === 0) {
     // All phrases have been used, reset the array
@@ -38,13 +51,11 @@ function updateQuote() {
   }
 
   quote_text.textContent = null;
-  nbWords.innerHTML=quotes_array.length;
-  const randomIndex = Math.floor(Math.random() * quotes_array.length);
+  const randomIndex = Math.floor(rng()  * quotes_array.length);
   current_quote = quotes_array[randomIndex];
 
   // Remove the selected phrase from the array
   quotes_array.splice(randomIndex, 1);
-  console.log(quotes_array)
   // Update the main quotes_array only when quotes_array is empty
   if (quotes_array.length === 0) {
     quotes_array = [];
@@ -97,11 +108,12 @@ function processCurrentText() {
   // update accuracy text
   let correctCharacters = (characterTyped - (total_errors + errors));
   let accuracyVal = ((correctCharacters / characterTyped) * 100);
-  accuracy_text.textContent = Math.round(accuracyVal);
+  accuracy = Math.round(accuracyVal)
+  accuracy_text.textContent = accuracy;
 
   // if current text is completely typed
   // irrespective of errors
-  if (curr_input.length == current_quote.length) {
+  if (curr_input.length === current_quote.length) {
     updateQuote();
 
     // update total errors
@@ -135,25 +147,65 @@ function finishGame() {
   input_area.disabled = true;
 
   // show finishing text
-  quote_text.textContent = "Click on restart to start a new game.";
+  quote_text.textContent = "Thank you For playing TYPO 1.0, If you want to replay refresh the page.";
 
   // display restart button
-  restart_btn.style.display = "block";
   score.style.display = "block";
-  // calculate cpm and wpm
-  cpm = Math.round(((characterTyped / timeElapsed) * 60));
+  scoreValue.style.display = "block";
+  // calculate wpm
   wpm = Math.round((((characterTyped / 5) / timeElapsed) * 60));
-
-  // update cpm and wpm text
-  cpm_text.textContent = cpm;
+  const calculatedScore = calculateScore(wpm, accuracy);
+  // update wpm text
   wpm_text.textContent = wpm;
+  scoreValue.textContent = calculatedScore.toFixed(2); // Display the score with 2 decimal places
 
-  // display the cpm and wpm
-  cpm_group.style.display = "block";
+  // display wpm
   wpm_group.style.display = "block";
+  timer_group.style.display = "none";
+
+}
+
+function calculateScore(wpm, accuracy) {
+  // Normalize accuracy to a scale between 0 and 1
+  const normalizedAccuracy = accuracy;
+
+  // Calculate the weighted score components
+  const wpmScore = (wpm) * 0.2;  // Normalize WPM to a scale between 0 and 60
+  const accuracyScore = normalizedAccuracy * 0.5;  // Scale accuracy to a max of 20
+
+  return wpmScore + accuracyScore ;
+}
+// Function to combine arrays
+function combineArrays(arrays) {
+  return arrays.reduce((combined, arr) => combined.concat(arr), []);
+}
+function selectDifficulty(difficulty) {
+  switch (difficulty) {
+    case 'easy':
+      quotes_array = [...quotes_easy];
+      break;
+    case 'medium':
+      quotes_array = [...quotes_medium];
+      break;
+    case 'hard':
+      quotes_array = [...quotes_hard];
+      break;
+    case 'random':
+      quotes_array = combineArrays([quotes_easy, quotes_medium, quotes_hard]);
+      break;
+    default:
+      quotes_array = combineArrays([quotes_easy, quotes_medium, quotes_hard]);
+      break;
+  }
+
+  startGame();
 }
 function startGame() {
-  btnStart.style.display="none";
+  btnEasy.style.display="none";
+  btnMedium.style.display="none";
+  btnHard.style.display="none";
+  btnRandom.style.display="none";
+  timer_group.style.display = "block";
   quote_text.style.display="block";
   input_area.focus();
   resetValues();
@@ -175,9 +227,8 @@ function resetValues() {
   accuracy_text.textContent = 100;
   timer_text.textContent = timeLeft + 's';
   error_text.textContent = 0;
-  restart_btn.style.display = "none";
   score.style.display="none";
-  cpm_group.style.display = "none";
+  scoreValue.style.display = "none";
   wpm_group.style.display = "none";
-  nbWords.innerHTML = quotes_array.length;
+  timer_group.style.display = "block";
 }
