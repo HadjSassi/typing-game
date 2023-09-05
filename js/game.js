@@ -33,7 +33,8 @@ let index = 0 ;
 function updateQuote() {
   if (quotes_array.length === 0) {
     // All phrases have been used, reset the array
-    quotes_array = original_quotes_array.slice();
+    // quotes_array = original_quotes_array.slice();
+    index = 0 ;
   }
 
   quote_text.textContent = null;
@@ -182,6 +183,7 @@ function selectDifficulty(difficulty) {
 
 // Function to shuffle an array (Fisher-Yates algorithm)
 function shuffleArray(array) {
+  //todo for racers
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
