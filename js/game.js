@@ -1,19 +1,4 @@
 let TIME_LIMIT = 60;
-const seedrandom = require('seedrandom');
-
-// Seed the PRNG with a fixed seed value (e.g., 12345)
-const now = new Date();
-
-const year = now.getFullYear();
-const month = now.getMonth() + 1; // Months are zero-indexed, so adding 1
-const day = now.getDate();
-const hour = now.getHours();
-const minute = now.getMinutes();
-
-const timestamp = parseInt(`${year}${month.toString().padStart(2, '0')}${day.toString().padStart(2, '0')}${hour.toString().padStart(2, '0')}${minute.toString().padStart(2, '0')}`);
-
-const seedValue = timestamp;
-
 
 let timer_text = document.querySelector(".curr_time");
 let accuracy_text = document.querySelector(".curr_accuracy");
@@ -44,8 +29,7 @@ let timer = null;
 input_area.onpaste = function () {
   return false;
 }
-const rng = seedrandom(seedValue);
-
+let index = 0 ;
 function updateQuote() {
   if (quotes_array.length === 0) {
     // All phrases have been used, reset the array
@@ -53,11 +37,9 @@ function updateQuote() {
   }
 
   quote_text.textContent = null;
-  const randomIndex = Math.floor(rng()  * quotes_array.length);
-  current_quote = quotes_array[randomIndex];
+  current_quote = quotes_array[index];
 
   // Remove the selected phrase from the array
-  quotes_array.splice(randomIndex, 1);
   // Update the main quotes_array only when quotes_array is empty
   if (quotes_array.length === 0) {
     quotes_array = [];
@@ -116,6 +98,7 @@ function processCurrentText() {
   // if current text is completely typed
   // irrespective of errors
   if (curr_input.length === current_quote.length) {
+    index++;
     updateQuote();
 
     // update total errors
@@ -168,14 +151,7 @@ function finishGame() {
 }
 
 function calculateScore(wpm, accuracy) {
-  // Normalize accuracy to a scale between 0 and 1
-  const normalizedAccuracy = accuracy;
-
-  // Calculate the weighted score components
-  const wpmScore = (wpm) * 0.2;  // Normalize WPM to a scale between 0 and 60
-  const accuracyScore = normalizedAccuracy * 0.5;  // Scale accuracy to a max of 20
-
-  return wpmScore + accuracyScore ;
+  return wpm*0.2 + accuracy*0.8 ;
 }
 // Function to combine arrays
 function combineArrays(arrays) {
@@ -194,6 +170,7 @@ function selectDifficulty(difficulty) {
       break;
     case 'random':
       quotes_array = combineArrays([quotes_easy, quotes_medium, quotes_hard]);
+      quotes_array = shuffleArray(quotes_array);
       break;
     default:
       quotes_array = combineArrays([quotes_easy, quotes_medium, quotes_hard]);
@@ -202,6 +179,16 @@ function selectDifficulty(difficulty) {
 
   startGame();
 }
+
+// Function to shuffle an array (Fisher-Yates algorithm)
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
 function startGame() {
   btnEasy.style.display="none";
   btnMedium.style.display="none";

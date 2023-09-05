@@ -1,6 +1,16 @@
 let quotes_easy = [
     /*  other club */
     "IEEE student Branch",
+    "IEEE members innovate for a better future.",
+    "CS Chapter fosters tech skills in students.",
+    "Xtreme coding challenges improve skills.",
+    "IEEE connects tech minds worldwide.",
+    "CS Chapter hosts coding competitions.",
+    "Xtreme programming sharpens developer skills.",
+    "IEEE advances technology through research.",
+    "CS Chapter mentors future tech leaders.",
+    "Xtreme coding tests your programming agility.",
+    "IEEE inspires engineers to excel.",
     "ENSIT: Ecole nationale superieure d'ingenieurs de Tunis",
     "Civil Engineering",
     "Industrial Engineering",
@@ -15,16 +25,6 @@ let quotes_easy = [
     "Aerospace and Electronic Systems Society AESS",
     "Power & Energy Society PES",
     "Women in Engineering WIE",
-    "IEEE members innovate for a better future.",
-    "CS Chapter fosters tech skills in students.",
-    "Xtreme coding challenges improve skills.",
-    "IEEE connects tech minds worldwide.",
-    "CS Chapter hosts coding competitions.",
-    "Xtreme programming sharpens developer skills.",
-    "IEEE advances technology through research.",
-    "CS Chapter mentors future tech leaders.",
-    "Xtreme coding tests your programming agility.",
-    "IEEE inspires engineers to excel.",
 ];
 
 let quotes_medium = [
