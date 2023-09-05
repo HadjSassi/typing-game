@@ -1,19 +1,7 @@
 let quotes_easy = [
     /*  other club */
-    "Geeks club",
-    "Club ENSIT Geeks",
-    "ENSIT Microsoft Club",
-    "Evo Meca",
     "IEEE student Branch",
-    "Club Elec",
-    "Enactus Ensit",
-    "Club NERDATA",
-    "Club Genie Civil",
-    "Club Genie Industriel",
-    "Club NATEG",
-    "Club KAIZEN",
-    "Innorobots",
-    "Activités sportives et culturelles",
+    
 ];
 
 let quotes_medium = [

@@ -1,4 +1,6 @@
 let TIME_LIMIT = 60;
+const seedrandom = require('seedrandom');
+
 // Seed the PRNG with a fixed seed value (e.g., 12345)
 const now = new Date();
 
@@ -42,7 +44,7 @@ let timer = null;
 input_area.onpaste = function () {
   return false;
 }
-const rng = new Math.seedrandom(seedValue);
+const rng = seedrandom(seedValue);
 
 function updateQuote() {
   if (quotes_array.length === 0) {

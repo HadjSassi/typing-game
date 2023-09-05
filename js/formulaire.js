@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Create an HTTP request to send the form data to the PHP script
     var request = new XMLHttpRequest();
-    request.open("POST", "../submit_form.php", true);
+    request.open("POST", "/typo1.0/submit_form.php", true);
     request.onreadystatechange = function() {
       if (request.readyState === XMLHttpRequest.DONE) {
         if (request.status === 200) {
